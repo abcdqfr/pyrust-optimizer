@@ -1,0 +1,228 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../../pytools"
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.terminal.activateEnvironment": false,
+
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "always",
+      "source.fixAll.ruff": "explicit"
+    },
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+
+    "[python]": {
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.rulers": [88, 100]
+    },
+
+    "ruff.enable": true,
+    "ruff.organizeImports": true,
+    "ruff.fixAll": true,
+    "ruff.showNotifications": "always",
+
+    "python.linting.enabled": true,
+    "python.linting.ruffEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.lintOnSave": true,
+
+    "python.testing.pytestEnabled": true,
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+
+    "terminal.integrated.cwd": "${workspaceFolder}",
+
+    "search.exclude": {
+      "**/.venv": true,
+      "**/__pycache__": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/.pytest_cache": true,
+      "**/.ruff_cache": true,
+      "**/.mypy_cache": true,
+      "**/node_modules": true,
+      "**/target": true
+    },
+
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.pytest_cache": true,
+      "**/.ruff_cache": true,
+      "**/.mypy_cache": true
+    },
+
+    "workbench.editor.enablePreview": false,
+    "explorer.confirmDelete": false,
+
+    "problems.decorations.enabled": true,
+    "problems.showCurrentInStatus": true,
+
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.indentation": true,
+
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+      "*": true,
+      "yaml": true,
+      "plaintext": false,
+      "rust": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "charliermarsh.ruff",
+      "rust-lang.rust-analyzer",
+      "ms-python.black-formatter",
+      "esbenp.prettier-vscode",
+      "github.copilot",
+      "github.copilot-chat",
+      "eamodio.gitlens",
+      "ms-python.pytest",
+      "njpwerner.autodocstring",
+      "tamasfe.even-better-toml",
+      "tree-sitter.tree-sitter"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "🚀 Quick Setup",
+        "type": "shell",
+        "command": "make dev",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "🔍 Lint & Fix All",
+        "type": "shell",
+        "command": "make format && make lint",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🧪 Run Tests",
+        "type": "shell",
+        "command": "make test",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "⚡ Profile Example",
+        "type": "shell",
+        "command": "make profile",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "🎯 Run Demo",
+        "type": "shell",
+        "command": "make demo",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "✅ Pre-commit Check",
+        "type": "shell",
+        "command": "make lint && make test",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "📊 Project Stats",
+        "type": "shell",
+        "command": "make stats",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "panel": "shared"
+        }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "🔥 Debug Profiler",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/src/profiler/hotspot_detector.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}",
+        "env": { "PYTHONPATH": "${workspaceFolder}" }
+      },
+      {
+        "name": "🌳 Debug Analyzer",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/pyrust-optimizer/src/analyzer/ast_analyzer.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/pyrust-optimizer",
+        "env": { "PYTHONPATH": "${workspaceFolder}/pyrust-optimizer" }
+      },
+      {
+        "name": "🚀 Debug Example",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/pyrust-optimizer/examples/basic_optimization.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/pyrust-optimizer",
+        "env": { "PYTHONPATH": "${workspaceFolder}/pyrust-optimizer" }
+      },
+      {
+        "name": "🧪 Debug Tests",
+        "type": "python",
+        "request": "launch",
+        "module": "pytest",
+        "args": ["${workspaceFolder}/pyrust-optimizer/tests", "-v"],
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/pyrust-optimizer",
+        "env": { "PYTHONPATH": "${workspaceFolder}/pyrust-optimizer" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyrust-optimizer"
+version = "0.1.0"
+description = "AI-guided Python to Rust optimization engine"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "PyRust Optimizer Team"}]
+requires-python = ">=3.8"
+keywords = ["python", "rust", "optimization", "performance", "llvm", "ai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Compilers",
+]
+
+dependencies = [
+    "tree-sitter>=0.20.0",
+    "tree-sitter-python>=0.20.0",
+    "scikit-learn>=1.0.0",
+    "numpy>=1.21.0",
+    "psutil>=5.8.0",
+    "click>=8.0.0",
+    "rich>=12.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-benchmark>=4.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+pyrust = "src.cli:cli"
+
+# Modern Python packaging - no __init__.py needed!
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-v", "--cov=src"]
+markers = [
+    "benchmark: performance benchmark tests",
+]

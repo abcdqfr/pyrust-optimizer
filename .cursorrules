@@ -1,0 +1,193 @@
+# PyRust Optimizer - Cursor Rules & Lessons
+
+# ============================================
+
+## CRITICAL WORKFLOW RULES
+
+### 🚨 ABSOLUTE PATHS ONLY - LEARNED THE HARD WAY
+
+**NEVER USE RELATIVE PATHS FOR FILE OPERATIONS!**
+
+❌ WRONG (causes location confusion):
+
+- edit_file("README.txt")
+- edit_file("./src/main.py")
+- edit_file("../config.json")
+
+✅ CORRECT (zero ambiguity):
+
+- edit_file("/home/brandon/Documents/Cursor/pyrust-optimizer/README.txt")
+- edit_file("/home/brandon/Documents/Cursor/pyrust-optimizer/src/main.py")
+- edit_file("/home/brandon/Documents/Cursor/pyrust-optimizer/config.json")
+
+**REASON**: Relative paths depend on current working directory context, which can change
+between tool calls and cause files to be created in wrong locations. Absolute paths
+provide 100% certainty of file destination.
+
+**CONSEQUENCE OF IGNORING**: Files created in wrong directories, data in wrong projects,
+massive cleanup required, user frustration, preventable headaches.
+
+**THIS RULE IS NON-NEGOTIABLE FOR ALL FILE OPERATIONS.**
+
+## 🔥 PYRUST OPTIMIZER CORE VISION - CARVED IN STONE
+
+### 🎯 THE REVOLUTIONARY APPROACH
+
+**PyRust Optimizer = SELECTIVE HOTSPOT OPTIMIZATION + FULL PYTHON COMPATIBILITY**
+
+**NOT a Python replacement. NOT a new language. NOT breaking compatibility.**
+**INTELLIGENT SURGICAL OPTIMIZATION while preserving the entire Python ecosystem.**
+
+### 🏆 OUR COMPETITIVE ADVANTAGES OVER CODON/NUMBA/ALTERNATIVES:
+
+#### 1. 🔄 FULL PYTHON ECOSYSTEM COMPATIBILITY
+
+- ALL existing Python libraries work unchanged (pandas, numpy, sklearn, etc.)
+- Zero breaking changes to existing codebases
+- Gradual, incremental adoption possible
+
+#### 2. 🤖 AI-GUIDED HOTSPOT DETECTION
+
+- Heuristic intelligence identifies optimization targets
+- Surgical precision - optimize ONLY what matters
+- Smart decision making: "This loop → Rust, This I/O → Keep Python"
+
+#### 3. 🎯 SELECTIVE OPTIMIZATION APPROACH
+
+- Hotspot-by-hotspot optimization
+- Rest of codebase remains untouched Python
+- Best of both worlds: Python flexibility + Rust performance
+
+#### 4. 🏗️ INFRASTRUCTURE AS CODE
+
+- Configuration-driven CLI generation
+- Modern Python packaging (PEP 420)
+- PyO3 + Maturin for seamless Python-Rust FFI
+
+### 🆚 WHY NOT CODON/ALTERNATIVES:
+
+**Codon Limitation**: All-or-nothing approach, breaks ecosystem compatibility
+**Numba Limitation**: JIT only, limited scope, no permanent compilation
+**Cython Limitation**: Requires syntax changes, learning curve
+
+**PyRust Optimizer Solution**: Keep Python + selectively accelerate with Rust
+
+### 💎 THE CORE PHILOSOPHY:
+
+**"Don't replace Python. Enhance it intelligently."**
+
+**This is why we exist. This is our mission. This is carved in stone.**
+
+## Project Information
+
+**Project Root**: /home/brandon/Documents/Cursor/pyrust-optimizer/
+**Project Type**: Revolutionary AI-guided Python→Rust selective optimization engine
+**Key Goal**: 10-100x performance gains on Python hotspots while preserving ecosystem compatibility
+
+## Development Standards
+
+- Use modern Python practices (PEP 420, no **init**.py clutter)
+- Ruff for linting and formatting
+- Comprehensive test coverage
+- Type hints throughout
+- Performance-first mindset
+
+## Architecture Components
+
+- src/profiler/: Heuristics-based hotspot detection
+- src/analyzer/: AST manipulation with Tree-sitter
+- src/mapper/: Python↔Rust semantic mapping
+- src/generator/: LLVM-optimized Rust code generation
+- src/runtime/: FFI integration layer
+
+## Lessons Learned
+
+### User Specified Lessons
+
+- NEVER utilize bare venv. Always use nix or npm/pip3 when doing python development. First, to check whether 'uv' is available, use `which uv`. If that's the case, first activate the flake-nix, and then use `uv pip install` to install packages.
+- Due to Cursor's limit, when you use `git` and `gh` and need to submit a multiline commit message, first write the message in a file, and then use `git commit -F <filename>` or similar command to commit. And then remove the file. Include "[Cursor] " in the commit message and PR title.
+
+### Cursor Learned
+
+- For search results, ensure proper handling of different character encodings (UTF-8) for international queries
+- When searching for recent news, use the current year (2025) instead of previous years, or simply use the "recent" keyword to get the latest information
+- **ABSOLUTE PATHS ONLY**: Always use full absolute paths for file operations to prevent location confusion and files being created in wrong directories
+- **HEURISTICS FIRST**: Start with simple, deterministic heuristics before complex AI/ML approaches
+- **PYRUST OPTIMIZER VISION**: Selective hotspot optimization with full Python compatibility - NOT a Python replacement
+
+### Scratchpad
+
+### Current Task: PyRust Optimizer Proof of Concept
+
+- [x] Project structure created
+- [x] Development environment configured
+- [x] Comprehensive README.txt documentation
+- [x] VSCode workspace configuration
+- [x] Critical lessons documented in .cursorrules
+- [x] **HEURISTICS-BASED PROFILER** (Phase 1 - Simple & Deterministic)
+- [x] AST analyzer with rule-based hotspot detection
+- [x] Template-based Rust code generation
+- [x] PyO3 FFI integration layer
+- [x] **INFRASTRUCTURE AS CODE CLI** (Configuration-driven command generation)
+- [x] Complete environment setup (Python, Rust, Maturin, Tree-sitter)
+- [x] **🚀 MAJOR BREAKTHROUGH: END-TO-END PIPELINE WORKING!**
+
+### 🎉 PHASE 1 COMPLETE - PROOF OF CONCEPT ACHIEVED!
+
+**✅ WORKING END-TO-END OPTIMIZATION PIPELINE:**
+
+- **Input**: Python file (examples/data_processing_bottleneck.py)
+- **Hotspot Detection**: Found 34 optimization targets with up to 9.5x speedup estimates
+- **Rust Generation**: Generated valid PyO3-enabled Rust code
+- **File Output**: Complete Rust project with Cargo.toml, lib.rs, **init**.py, README.md
+- **Instructions**: Clear next steps for compilation with maturin
+
+**🔥 CRITICAL FIXES MADE:**
+
+1. **Fixed dual CLI implementation** - Replaced old broken optimize() with delegation to CommandHandlers
+2. **Fixed method name mismatches** - analyze_file → analyze_code, hotspot_type.value → hotspot_type
+3. **Added missing create_integration()** - Returns {file_path: content} dict for PyO3 files
+4. **Fixed python alias** - Added permanent alias python=python3 to ~/.bashrc
+5. **🆕 BUTTERY SMOOTH UX** - Added interactive workflow with speedup estimates and user confirmation
+
+**💎 KEY BREAKTHROUGH LESSONS:**
+
+- **SURGICAL DEBUGGING WORKS** - Fixed one error at a time through the pipeline
+- **DUAL IMPLEMENTATION ANTI-PATTERN** - Having old/new versions causes confusion
+- **METHOD NAME CONSISTENCY** - Always check actual method signatures vs expected calls
+- **END-TO-END TESTING** - Don't assume components work together until proven
+- **🆕 INTERACTIVE UX WINS** - Users want control and visibility into speedup estimates before committing to builds
+
+### Revolutionary Vision
+
+**PROOF OF CONCEPT APPROACH**: Heuristics-based selective optimization → Profile Python → Identify hotspots with simple rules → Convert critical paths to Rust → Achieve 10-100x performance gains while maintaining full Python ecosystem compatibility.
+
+**PHASE 1 GOAL**: ✅ **ACHIEVED!** Built a working tool that demonstrates the concept with deterministic heuristics.
+
+**NEXT PHASE**: Production hardening, real-world testing, performance validation
+
+### Heuristics-Based Architecture
+
+**HOTSPOT DETECTION HEURISTICS:**
+
+- CPU-intensive loops (nested loops, large iterations)
+- Memory-intensive operations (large arrays, repeated allocations)
+- I/O bottlenecks (file operations, network calls)
+- Mathematical computations (floating-point operations)
+- String processing (concatenation, regex)
+
+**RUST GENERATION HEURISTICS:**
+
+- Numerical loops → Rust for loops with bounds checking
+- Array operations → Rust slices and iterators
+- Mathematical functions → Rust optimized math
+- Memory management → Rust ownership system
+- Error handling → Rust Result types
+
+**OPTIMIZATION PREDICTION HEURISTICS:**
+
+- Loop complexity (O(n²) → high priority)
+- Data structure usage (lists → vectors)
+- Function call frequency (hot functions)
+- Memory allocation patterns (repeated allocs)
+- Type inference opportunities (static types)
