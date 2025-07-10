@@ -141,15 +141,48 @@ class CommandHandlers:
                 if verbose:
                     click.echo(f"📝 Created {full_path}")
 
-            # Success summary
-            click.echo(f"\n🎉 Optimization complete!")
-            click.echo(f"📁 Output directory: {output_path}")
-            click.echo(f"🦀 Generated Rust module: {module_name}")
-            click.echo(f"⚡ Estimated speedup: {max(h.optimization_potential for h in filtered_hotspots) * 10:.1f}x")
-            click.echo(f"\n🛠️ Next steps:")
-            click.echo(f"   cd {output_path}")
-            click.echo(f"   maturin develop")
-            click.echo(f"   python -c \"import {module_name}; print('Success!')\"")
+            # Auto-compile the Rust module
+            click.echo(f"\n🔥 Auto-compiling Rust module...")
+
+            try:
+                import subprocess
+                result = subprocess.run(
+                    ['maturin', 'develop'],
+                    cwd=output_path,
+                    capture_output=True,
+                    text=True,
+                    timeout=120
+                )
+
+                if result.returncode == 0:
+                    click.echo("✅ Rust module compiled successfully!")
+                    click.echo(f"🚀 Module '{module_name}' ready for immediate import!")
+
+                    # Success summary with seamless integration
+                    click.echo(f"\n🎉 Optimization complete!")
+                    click.echo(f"📁 Output directory: {output_path}")
+                    click.echo(f"🦀 Generated Rust module: {module_name}")
+                    click.echo(f"⚡ Estimated speedup: {max(h.optimization_potential for h in filtered_hotspots) * 10:.1f}x")
+                    click.echo(f"\n💡 Usage (works immediately):")
+                    click.echo(f"   import sys; sys.path.append('{output_path}')")
+                    click.echo(f"   import {module_name}")
+                    click.echo(f"   # Use optimized functions with {max(h.optimization_potential for h in filtered_hotspots) * 10:.1f}x speedup!")
+
+                else:
+                    click.echo("⚠️  Auto-compilation failed. Manual steps required:")
+                    click.echo(f"   cd {output_path}")
+                    click.echo("   maturin develop")
+
+            except FileNotFoundError:
+                click.echo("⚠️  maturin not found. Install with: pip install maturin")
+                click.echo("\n🛠️ Manual steps:")
+                click.echo(f"   cd {output_path}")
+                click.echo("   maturin develop")
+            except Exception as e:
+                click.echo(f"⚠️  Auto-compilation error: {e}")
+                click.echo("\n🛠️ Manual steps:")
+                click.echo(f"   cd {output_path}")
+                click.echo("   maturin develop")
 
             return 0
 
